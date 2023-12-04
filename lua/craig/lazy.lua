@@ -18,7 +18,24 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 		},
 	},
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {},
+    },
 	{ 'rose-pine/neovim', name = 'rose-pine' },
+    {
+        'ribru17/bamboo.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('bamboo').setup {
+                transparent = true
+                -- optional configuration here
+            }
+            require('bamboo').load()
+        end,
+    },
 	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
 	{ 'mbbill/undotree' },
 	{ 'tpope/vim-fugitive' },
