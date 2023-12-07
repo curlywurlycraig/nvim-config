@@ -13,14 +13,31 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
-	{ 'oxfist/night-owl.nvim', name = 'night-owl' },
-	{ 'rose-pine/neovim', name = 'rose-pine' },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+    },
+    { 'oxfist/night-owl.nvim', name = 'night-owl' },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {},
+    },
+    { 'rose-pine/neovim', name = 'rose-pine' },
+    {
+        'ribru17/bamboo.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('bamboo').setup {
+                transparent = true
+                -- optional configuration here
+            }
+            require('bamboo').load()
+        end,
+    },
 	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
 	{ 'mbbill/undotree' },
 	{ 'tpope/vim-fugitive' },
