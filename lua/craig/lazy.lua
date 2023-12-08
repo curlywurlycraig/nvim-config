@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -12,18 +13,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+    },
+    { 'oxfist/night-owl.nvim', name = 'night-owl' },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
     },
-	{ 'rose-pine/neovim', name = 'rose-pine' },
+    { 'rose-pine/neovim', name = 'rose-pine' },
     {
         'ribru17/bamboo.nvim',
         lazy = false,
@@ -39,6 +41,7 @@ require("lazy").setup({
 	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
 	{ 'mbbill/undotree' },
 	{ 'tpope/vim-fugitive' },
+    { 'tpope/vim-rhubarb' },
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
@@ -55,5 +58,19 @@ require("lazy").setup({
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         }
+    },
+    {
+        "ray-x/go.nvim",
+        dependencies = { -- optional packages
+            "ray-x/guihua.lua",
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("go").setup()
+        end,
+        event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
+        build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     }
 })
