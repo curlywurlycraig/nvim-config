@@ -1,14 +1,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -25,7 +25,7 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
     },
-    { 'rose-pine/neovim', name = 'rose-pine' },
+    { 'rose-pine/neovim',      name = 'rose-pine' },
     {
         'ribru17/bamboo.nvim',
         lazy = false,
@@ -38,17 +38,17 @@ require("lazy").setup({
             require('bamboo').load()
         end,
     },
-	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
-	{ 'mbbill/undotree' },
-	{ 'tpope/vim-fugitive' },
+    { 'nvim-treesitter/nvim-treesitter',  build = ":TSUpdate" },
+    { 'mbbill/undotree' },
+    { 'tpope/vim-fugitive' },
     { 'tpope/vim-rhubarb' },
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-	{'neovim/nvim-lspconfig'},
-	{'hrsh7th/cmp-nvim-lsp'},
-	{'hrsh7th/nvim-cmp'},
-	{'L3MON4D3/LuaSnip'},
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'L3MON4D3/LuaSnip' },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -72,5 +72,6 @@ require("lazy").setup({
         event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-    }
+    },
+    { 'github/copilot.vim' }
 })
